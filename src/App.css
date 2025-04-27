@@ -1,5 +1,44 @@
 /* Your Plugin CSS */
 
+/* Theme Variables */
+:root {
+    /* Light Theme Colors */
+    --light-bg: #ffffff;
+    --light-bg-secondary: #f5f5f5;
+    --light-text: #333333;
+    --light-text-secondary: #666666;
+    --light-border: #dddddd;
+    --light-primary: #0099ff;
+    --light-primary-hover: #007acc;
+    --light-primary-disabled: #b3dcff;
+    --light-success: #43a047;
+    --light-error: #e53935;
+    --light-input-bg: #ffffff;
+    --light-preview-bg: #f9f9f9;
+    
+    /* Dark Theme Colors */
+    --dark-bg: #1e1e1e;
+    --dark-bg-secondary: #2d2d2d;
+    --dark-text: #e0e0e0;
+    --dark-text-secondary: #b0b0b0;
+    --dark-border: #444444;
+    --dark-primary: #0099ff;
+    --dark-primary-hover: #00aaff;
+    --dark-primary-disabled: #004466;
+    --dark-success: #4caf50;
+    --dark-error: #f44336;
+    --dark-input-bg: #2d2d2d;
+    --dark-preview-bg: #2d2d2d;
+}
+
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Light Theme Default */
 main {
     display: flex;
     flex-direction: column;
@@ -7,7 +46,14 @@ main {
     padding: 0 15px 15px 15px;
     height: 100%;
     gap: 15px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--light-text);
+}
+
+/* Dark Theme */
+main.theme-dark {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
 }
 
 h2 {
@@ -34,18 +80,89 @@ label {
     font-weight: 500;
 }
 
+/* Theme-based styles for inputs */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+.select-input {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--light-border);
     border-radius: 4px;
     font-size: 12px;
+    background-color: var(--light-input-bg);
+    color: var(--light-text);
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+}
+
+.theme-dark input[type="text"],
+.theme-dark input[type="password"],
+.theme-dark .select-input {
+    border-color: var(--dark-border);
+    background-color: var(--dark-input-bg);
+    color: var(--dark-text);
+}
+
+.select-input {
+    cursor: pointer;
+    appearance: none;
+    padding-right: 24px;
+    /* Custom dropdown arrow that works with dark mode */
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23888' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+
+.theme-dark .select-input {
+    /* Light dropdown arrow for dark mode */
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23ccc' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+}
+
+.select-input:focus {
+    border-color: var(--light-primary);
+    outline: none;
+}
+
+.theme-dark .select-input:focus {
+    border-color: var(--dark-primary);
 }
 
 input[type="range"] {
     width: 100%;
     margin: 5px 0;
+    accent-color: var(--light-primary);
+}
+
+.theme-dark input[type="range"] {
+    accent-color: var(--dark-primary);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin: 0;
+    margin-right: 6px;
+    width: auto;
+    accent-color: var(--light-primary);
+}
+
+.theme-dark .checkbox-container input[type="checkbox"] {
+    accent-color: var(--dark-primary);
+}
+
+.checkbox-label {
+    font-size: 11px;
+    color: var(--light-text-secondary);
+    margin: 0;
+    display: inline;
+    font-weight: normal;
+}
+
+.theme-dark .checkbox-label {
+    color: var(--dark-text-secondary);
 }
 
 .button-group {
@@ -53,6 +170,7 @@ input[type="range"] {
     gap: 8px;
     width: 100%;
     margin-top: 5px;
+    flex-wrap: wrap;
 }
 
 .framer-button-primary,
@@ -63,40 +181,71 @@ input[type="range"] {
     cursor: pointer;
     border: none;
     flex: 1;
+    min-width: 100px;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .framer-button-primary {
-    background-color: #0099ff;
+    background-color: var(--light-primary);
     color: white;
 }
 
+.theme-dark .framer-button-primary {
+    background-color: var(--dark-primary);
+}
+
 .framer-button-primary:disabled {
-    background-color: #b3dcff;
+    background-color: var(--light-primary-disabled);
+    cursor: not-allowed;
+}
+
+.theme-dark .framer-button-primary:disabled {
+    background-color: var(--dark-primary-disabled);
 }
 
 .framer-button-secondary {
-    background-color: #f5f5f5;
-    color: #333;
-    border: 1px solid #ddd;
+    background-color: var(--light-bg-secondary);
+    color: var(--light-text);
+    border: 1px solid var(--light-border);
+}
+
+.theme-dark .framer-button-secondary {
+    background-color: var(--dark-bg-secondary);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
 }
 
 .framer-button-secondary:disabled {
-    color: #999;
-    background-color: #f9f9f9;
+    color: var(--light-text-secondary);
+    background-color: var(--light-bg-secondary);
+    cursor: not-allowed;
+}
+
+.theme-dark .framer-button-secondary:disabled {
+    color: var(--dark-text-secondary);
+    background-color: var(--dark-bg-secondary);
 }
 
 .error {
-    color: #e53935;
+    color: var(--light-error);
     font-size: 12px;
     margin: 5px 0;
     width: 100%;
 }
 
+.theme-dark .error {
+    color: var(--dark-error);
+}
+
 .success {
-    color: #43a047;
+    color: var(--light-success);
     font-size: 12px;
     margin: 5px 0;
     width: 100%;
+}
+
+.theme-dark .success {
+    color: var(--dark-success);
 }
 
 .preview {
@@ -106,11 +255,54 @@ input[type="range"] {
 
 .text-preview {
     font-size: 12px;
-    background-color: #f9f9f9;
+    background-color: var(--light-preview-bg);
+    color: var(--light-text);
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #eee;
+    border: 1px solid var(--light-border);
     max-height: 60px;
     overflow-y: auto;
     line-height: 1.4;
+}
+
+.theme-dark .text-preview {
+    background-color: var(--dark-preview-bg);
+    color: var(--dark-text);
+    border-color: var(--dark-border);
+}
+
+/* Header with theme toggle */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.header h2 {
+    margin: 0;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    background-color: var(--light-bg-secondary);
+}
+
+.theme-dark .theme-toggle {
+    background-color: var(--dark-bg-secondary);
+}
+
+.theme-toggle:hover {
+    background-color: var(--light-border);
+}
+
+.theme-dark .theme-toggle:hover {
+    background-color: var(--dark-border);
 }
