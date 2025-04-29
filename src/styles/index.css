@@ -1,0 +1,5 @@
+/* Main CSS File */
+@import './theme.css';
+@import './components.css';
+
+/* Any additional global styles can be added here */ 

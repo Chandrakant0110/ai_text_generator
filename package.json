@@ -1,7 +1,7 @@
 {
   "name": "ai_text_generator",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,8 +11,10 @@
     "pack": "npx framer-plugin-tools@latest pack"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
     "@google/generative-ai": "^0.24.0",
     "framer-plugin": "^3",
+    "openai": "^4.96.0",
     "react": "^18",
     "react-dom": "^18",
     "vite-plugin-mkcert": "^1"

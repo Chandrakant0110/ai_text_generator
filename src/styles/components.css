@@ -1,71 +1,25 @@
-/* Your Plugin CSS */
-
-/* Theme Variables */
-:root {
-    /* Light Theme Colors */
-    --light-bg: #ffffff;
-    --light-bg-secondary: #f5f5f5;
-    --light-text: #333333;
-    --light-text-secondary: #666666;
-    --light-border: #dddddd;
-    --light-primary: #0099ff;
-    --light-primary-hover: #007acc;
-    --light-primary-disabled: #b3dcff;
-    --light-success: #43a047;
-    --light-error: #e53935;
-    --light-input-bg: #ffffff;
-    --light-preview-bg: #f9f9f9;
-    
-    /* Dark Theme Colors */
-    --dark-bg: #1e1e1e;
-    --dark-bg-secondary: #2d2d2d;
-    --dark-text: #e0e0e0;
-    --dark-text-secondary: #b0b0b0;
-    --dark-border: #444444;
-    --dark-primary: #0099ff;
-    --dark-primary-hover: #00aaff;
-    --dark-primary-disabled: #004466;
-    --dark-success: #4caf50;
-    --dark-error: #f44336;
-    --dark-input-bg: #2d2d2d;
-    --dark-preview-bg: #2d2d2d;
-}
-
-/* Base Styles */
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-/* Light Theme Default */
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding: 0 15px 15px 15px;
-    height: 100%;
-    gap: 15px;
-    background-color: var(--light-bg);
-    color: var(--light-text);
-}
-
-/* Dark Theme */
-main.theme-dark {
-    background-color: var(--dark-bg);
-    color: var(--dark-text);
-}
+/* Component Styles */
 
 h2 {
     font-size: 16px;
     margin: 12px 0 5px;
     font-weight: 600;
+    color: var(--light-text);
+}
+
+.theme-dark h2 {
+    color: var(--dark-text);
 }
 
 h3 {
     font-size: 14px;
     margin: 10px 0 5px;
     font-weight: 500;
+    color: var(--light-text);
+}
+
+.theme-dark h3 {
+    color: var(--dark-text);
 }
 
 .form-group {
@@ -78,9 +32,14 @@ label {
     font-size: 12px;
     margin-bottom: 5px;
     font-weight: 500;
+    color: var(--light-text);
 }
 
-/* Theme-based styles for inputs */
+.theme-dark label {
+    color: var(--dark-text);
+}
+
+/* Inputs and Form Controls */
 input[type="text"],
 input[type="password"],
 .select-input {
@@ -136,6 +95,7 @@ input[type="range"] {
     accent-color: var(--dark-primary);
 }
 
+/* Checkbox styles */
 .checkbox-container {
     display: flex;
     align-items: center;
@@ -165,6 +125,7 @@ input[type="range"] {
     color: var(--dark-text-secondary);
 }
 
+/* Button styles */
 .button-group {
     display: flex;
     gap: 8px;
@@ -226,6 +187,7 @@ input[type="range"] {
     background-color: var(--dark-bg-secondary);
 }
 
+/* Status messages */
 .error {
     color: var(--light-error);
     font-size: 12px;
@@ -248,6 +210,7 @@ input[type="range"] {
     color: var(--dark-success);
 }
 
+/* Text preview */
 .preview {
     width: 100%;
     margin-top: 10px;
@@ -285,18 +248,25 @@ input[type="range"] {
 }
 
 .theme-toggle {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     cursor: pointer;
     font-size: 16px;
-    padding: 4px 8px;
+    padding: 0;
     border-radius: 4px;
     transition: background-color 0.2s;
     background-color: var(--light-bg-secondary);
+    color: var(--light-text);
 }
 
 .theme-dark .theme-toggle {
     background-color: var(--dark-bg-secondary);
+    color: var(--dark-text);
 }
 
 .theme-toggle:hover {
@@ -306,3 +276,14 @@ input[type="range"] {
 .theme-dark .theme-toggle:hover {
     background-color: var(--dark-border);
 }
+
+.provider-note {
+    font-size: 11px;
+    color: var(--light-text-secondary);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.theme-dark .provider-note {
+    color: var(--dark-text-secondary);
+} 
